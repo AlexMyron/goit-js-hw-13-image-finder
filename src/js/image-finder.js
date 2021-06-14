@@ -12,7 +12,6 @@ function onInputSearch(e) {
   e.preventDefault();
 
   const val = refs.form.elements.query.value;
-  console.log(val);
   URL = `https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${val}`;
 
   apiService.fetchRequest(URL).then(result => {
@@ -20,14 +19,16 @@ function onInputSearch(e) {
   });
 }
 
+const scrollOptions = {
+  behavior: 'smooth',
+  block: 'end',
+  inline: 'nearest',
+};
+
 function onLoadMore(e) {
   e.preventDefault();
 
   apiService.incrementPage();
-  apiService.fetchRequest(URL).then(r => apiService.markupGallery(r));
-  refs.gallery.scrollIntoView({
-    behavior: 'smooth',
-    block: 'end',
-    inline: 'nearest',
-  });
+  apiService.fetchRequest(URL).then(result => apiService.markupGallery(result));
+  refs.gallery.scrollIntoView(scrollOptions);
 }

@@ -4,13 +4,12 @@ import refs from './refs';
 const API_KEY = '22046149-41a2515b5a783e6a5f4bfbfcc';
 
 export default class ApiService {
-  constructor(query) {
+  constructor() {
     this.page = 1;
     this.URL = `&page=${this.page}&per_page=12&key=${API_KEY}`;
   }
 
   fetchRequest(url) {
-    console.log(this.URL);
     console.log(this.page);
     return fetch(`${url}${this.URL}`)
       .then(resolve => resolve.json())
@@ -22,10 +21,6 @@ export default class ApiService {
 
   incrementPage() {
     this.page += 1;
-  }
-
-  resetPage() {
-    this.page = 1;
   }
 
   markupGallery(request) {
