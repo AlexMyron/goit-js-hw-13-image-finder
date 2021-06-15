@@ -12,11 +12,10 @@ const apiService = new ApiService();
 function onInputSearch(e) {
   e.preventDefault();
 
-  const value = refs.form.elements.query.value;
+  const value = refs.form.elements.query.value.trim();
 
   if (value === '') {
-    apiService.clearMarkup();
-    return isBtnHidden(true);
+    return clearMarkupAndHideBtn();
   }
 
   apiService.fetchRequest(value).then(result => {
@@ -35,11 +34,10 @@ const scrollOptions = {
 function onLoadMore(e) {
   e.preventDefault();
 
-  const value = refs.form.elements.query.value;
+  const value = refs.form.elements.query.value.trim();
 
   if (value === '') {
-    apiService.clearMarkup();
-    return isBtnHidden(true);
+    return clearMarkupAndHideBtn();
   }
 
   apiService.incrementPage();
@@ -49,9 +47,7 @@ function onLoadMore(e) {
   refs.gallery.scrollIntoView(scrollOptions);
 }
 
-function checkValue() {
-  if (value === '') {
-    apiService.clearMarkup();
-    return isBtnHidden(true);
-  }
+function clearMarkupAndHideBtn() {
+  apiService.clearMarkup();
+  return isBtnHidden(true);
 }
