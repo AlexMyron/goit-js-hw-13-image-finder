@@ -6,12 +6,12 @@ const API_KEY = '22046149-41a2515b5a783e6a5f4bfbfcc';
 export default class ApiService {
   constructor() {
     this.page = 1;
-    this.URL = `&page=${this.page}&per_page=12&key=${API_KEY}`;
   }
 
-  fetchRequest(url) {
-    console.log(this.page);
-    return fetch(`${url}${this.URL}`)
+  fetchRequest(val) {
+    const url = `https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${val}&page=${this.page}&per_page=12&key=${API_KEY}`;
+
+    return fetch(url)
       .then(resolve => resolve.json())
       .then(result => {
         return result;
@@ -26,9 +26,5 @@ export default class ApiService {
   markupGallery(request) {
     const galleryMarkup = galleryTpl(request);
     refs.gallery.insertAdjacentHTML('beforeend', galleryMarkup);
-  }
-
-  clearMarkup() {
-    refs.gallery.innerHTML = '';
   }
 }
