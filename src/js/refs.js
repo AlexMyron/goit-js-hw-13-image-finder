@@ -13,12 +13,13 @@ const form = document.querySelector('#search-form');
 loadMoreBtn.type = 'submit';
 loadMoreBtn.textContent = 'Load More';
 loadMoreBtn.classList.add('load-more-btn');
+
 gallery.classList.add('gallery');
 
 form.append(loadMoreBtn);
 form.before(gallery);
 
-export default {
+export const refs = {
   form,
   loadMoreBtn,
   gallery,
@@ -26,4 +27,11 @@ export default {
 
 function markupForm(template) {
   body.insertAdjacentHTML('beforeend', template);
+}
+
+export function isBtnHidden(value) {
+  if (!value) {
+    return (loadMoreBtn.style.display = 'block');
+  }
+  return (loadMoreBtn.style.display = 'none');
 }

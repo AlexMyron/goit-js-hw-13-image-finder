@@ -36,6 +36,14 @@ img {
      object-fit: cover;
 }
 
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+  padding: 0;
+}
+
 .gallery {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -46,8 +54,8 @@ img {
 }
 
 .photo-card {
-  -ms-flex-preferred-size: calc((100% - 90px) / 3);
-      flex-basis: calc((100% - 90px) / 3);
+  -ms-flex-preferred-size: calc((100% - 180px) / 6);
+      flex-basis: calc((100% - 180px) / 6);
   margin: 15px;
   border-radius: 4px;
   -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
@@ -72,6 +80,9 @@ img {
 }
 
 .search-form {
+  position: fixed;
+  top: 0;
+  left: 50%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -83,12 +94,17 @@ img {
       -ms-flex-align: center;
           align-items: center;
   gap: 10px;
-  margin-top: 70px;
-  margin-bottom: 70px;
+  padding-top: 15px;
+  width: 100vw;
+  -webkit-transition: all 500ms ease;
+  transition: all 500ms ease;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.199);
 }
 
 .load-more-btn {
-  display: inline-block;
+  display: none;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -101,5 +117,11 @@ img {
   border-radius: 3px;
   cursor: pointer;
   outline: none;
+  -webkit-transition: all 500ms ease;
+  transition: all 500ms ease;
+}
+
+.stats-item {
+  margin-top: 6px;
 }
 /*# sourceMappingURL=main.css.map */
