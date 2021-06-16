@@ -9,7 +9,7 @@ refs.loadMoreBtn.addEventListener('click', onLoadMore);
 
 const apiService = new ApiService();
 
-function onInputSearch(e) {
+async function onInputSearch(e) {
   e.preventDefault();
 
   const value = refs.form.elements.query.value.trim();
@@ -18,11 +18,15 @@ function onInputSearch(e) {
     return clearMarkupAndHideBtn();
   }
 
-  apiService.fetchRequest(value).then(result => {
+  try {
+    const result = await apiService.aFetchRequest(value);
     apiService.markupGallery(result);
-  });
-  alertMsg(value);
-  isBtnHidden(false);
+
+    alertMsg(value);
+    isBtnHidden(false);
+  } catch (error) {
+    console.log('ERROR', error);
+  }
 }
 
 const scrollOptions = {
@@ -31,7 +35,7 @@ const scrollOptions = {
   inline: 'nearest',
 };
 
-function onLoadMore(e) {
+async function onLoadMore(e) {
   e.preventDefault();
 
   const value = refs.form.elements.query.value.trim();
@@ -41,10 +45,13 @@ function onLoadMore(e) {
   }
 
   apiService.incrementPage();
-  apiService
-    .fetchRequest(value)
-    .then(result => apiService.markupGallery(result));
-  refs.gallery.scrollIntoView(scrollOptions);
+  try {
+    const result = await apiService.aFetchRequest(value);
+    apiService.markupGallery(result);
+    refs.gallery.scrollIntoView(scrollOptions);
+  } catch (error) {
+    console.log('ERROR', error);
+  }
 }
 
 function clearMarkupAndHideBtn() {
