@@ -1,7 +1,7 @@
 import ApiService from './apiService';
 import { refs } from './refs';
 import { isBtnHidden } from './refs';
-import alertMsg from './pnotifyer';
+import { alertMsg, alertError } from './pnotifyer';
 
 const debounce = require('lodash.debounce');
 refs.form.addEventListener('input', debounce(onInputSearch, 1000));
@@ -22,9 +22,10 @@ async function onInputSearch(e) {
     const result = await apiService.aFetchRequest(value);
     apiService.markupGallery(result);
 
-    alertMsg(value);
     isBtnHidden(false);
+    alertMsg(value);
   } catch (error) {
+    alertError(error);
     console.log('ERROR', error);
   }
 }
@@ -50,6 +51,7 @@ async function onLoadMore(e) {
     apiService.markupGallery(result);
     refs.gallery.scrollIntoView(scrollOptions);
   } catch (error) {
+    alertError(error);
     console.log('ERROR', error);
   }
 }

@@ -4,10 +4,34 @@ import '@pnotify/core/dist/BrightTheme.css';
 import * as Confirm from '@pnotify/confirm';
 import '@pnotify/confirm/dist/PNotifyConfirm.css';
 
-export default function alertMsg(value) {
+export function alertMsg(value) {
   info({
-    title: 'Button Clicked',
+    title: 'Notification',
     text: `You've been searching for "${value}".`,
+    modules: new Map([
+      [
+        Confirm,
+        {
+          confirm: true,
+          buttons: [
+            {
+              text: 'Ok',
+              primary: true,
+              click: notice => {
+                notice.close();
+              },
+            },
+          ],
+        },
+      ],
+    ]),
+  });
+}
+
+export function alerError(value) {
+  info({
+    title: 'Error',
+    text: `Error. The problem is: "${value}".`,
     modules: new Map([
       [
         Confirm,

@@ -8,16 +8,21 @@ export default class ApiService {
     this.page = 1;
   }
 
-  // fetchRequest(value) {
-  //   const url = `https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${value}&page=${this.page}&per_page=12&key=${API_KEY}`;
+  /**
+   * 
+   * @param {*} 
+   * fetchRequest(value) {
+    const url = `https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${value}&page=${this.page}&per_page=12&key=${API_KEY}`;
 
-  //   return fetch(url)
-  //     .then(resolve => resolve.json())
-  //     .then(result => {
-  //       return result;
-  //     })
-  //     .catch(error => console.log('ERROR:', error));
-  // }
+    return fetch(url)
+      .then(resolve => resolve.json())
+      .then(result => {
+        return result;
+      })
+      .catch(error => console.log('ERROR:', error));
+  }value 
+   * @returns 
+   */
 
   async aFetchRequest(value) {
     const url = `https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${value}&page=${this.page}&per_page=12&key=${API_KEY}`;
