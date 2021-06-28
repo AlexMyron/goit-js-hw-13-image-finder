@@ -24,8 +24,6 @@ async function onInputSearch(e) {
 
     isBtnHidden(false);
     alertMsg(value);
-
-    require('fslightbox');
   } catch (error) {
     alertError(error);
     console.log('ERROR', error);
@@ -48,12 +46,10 @@ async function onLoadMore(e) {
   }
 
   apiService.incrementPage();
-  ``;
   try {
     const result = await apiService.aFetchRequest(value);
     apiService.markupGallery(result);
     refs.gallery.scrollIntoView(scrollOptions);
-    require('fslightbox');
   } catch (error) {
     alertError(error);
     console.log('ERROR', error);

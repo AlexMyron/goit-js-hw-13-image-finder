@@ -9,6 +9,7 @@ const formTpl =
 markupForm(formTpl);
 
 const form = document.querySelector('#search-form');
+const slider = document.querySelector('.splide__list');
 
 loadMoreBtn.type = 'submit';
 loadMoreBtn.textContent = 'Load More';
@@ -20,10 +21,10 @@ form.append(loadMoreBtn);
 form.before(gallery);
 
 export const refs = {
-  body,
   form,
   loadMoreBtn,
   gallery,
+  slider,
 };
 
 function markupForm(template) {
